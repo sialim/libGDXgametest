@@ -12,6 +12,10 @@ public class Game extends ApplicationAdapter {
 	Texture img;
 	float x;
 	float y;
+
+	int speed = 4;
+	final int walkSpeed = 4;
+	final int runSpeed = walkSpeed * 2;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -21,17 +25,22 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void render () {
 		ScreenUtils.clear(1, 0, 0, 1);
+		if(Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
+			speed = runSpeed;
+		} else {
+			speed = walkSpeed;
+		}
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-			y+=4;
+			y+=speed;
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-			y-=4;
+			y-=speed;
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-			x-=4;
+			x-=speed;
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			x+=4;
+			x+=speed;
 		}
 
 		batch.begin();
